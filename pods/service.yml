@@ -11,7 +11,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service
+  name: service # any name
 spec:
   ports:
     - protocol: TCP
