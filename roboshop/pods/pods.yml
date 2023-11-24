@@ -10,7 +10,7 @@ spec:
     - name: frontend
       image: rkalluru/frontend
       ports:
-        - hostPort: 40000
+        - hostPort: 30001 # port ranges are 30000 to 32767
           containerPort: 80
 ---
 apiVersion: v1
