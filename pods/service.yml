@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: service
+  name: 03-service
+  labels: 03-service
 spec:
   containers:
     - name: nginx
@@ -11,8 +12,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service # any name
+  name: service-03 # any name
 spec:
+  selector:
+    name: 03-service #the selector name and labels name should be same... to conncet pod & svc we use selector
   ports:
     - protocol: TCP
       port: 80
