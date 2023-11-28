@@ -46,21 +46,46 @@ spec:
       port: 8080
       targetPort: 8080
 ---
-apiVersion: v1
-kind: Pod
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: catalogue
+#  labels:
+#    component: catalogue
+#spec:
+#  containers:
+#    - name: catalogue
+#      image: rkalluru/catalogue
+#      env:
+#        - name: DOCUMENTDB
+#          value: "true"
+#        - name: MONGO_URL
+#          value: "mongodb://admin1:RoboShop123@prod-docdb-cluster.cluster-cpy5ddqj3otr.us-east-1.docdb.amazonaws.com:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+---
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
   name: catalogue
   labels:
     component: catalogue
 spec:
-  containers:
-    - name: catalogue
-      image: rkalluru/catalogue
-      env:
-        - name: DOCUMENTDB
-          value: "true"
-        - name: MONGO_URL
-          value: "mongodb://admin1:RoboShop123@prod-docdb-cluster.cluster-cpy5ddqj3otr.us-east-1.docdb.amazonaws.com:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+  replicas: 3
+  selector:
+    matchLabels:
+      component: catalogue
+  template:
+    metadata:
+      labels:
+        component: catalogue
+    spec:
+      containers:
+        - name: catalogue
+          image: rkalluru/catalogue
+          env:
+            - name: DOCUMENTDB
+              value: "true"
+            - name: MONGO_URL
+              value: "mongodb://admin1:RoboShop123@prod-docdb-cluster.cluster-cpy5ddqj3otr.us-east-1.docdb.amazonaws.com:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 ---
 apiVersion: v1
 kind: Service
