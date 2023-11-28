@@ -65,15 +65,18 @@ spec:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
+  # Replica set labels
   name: catalogue
   labels:
     component: catalogue
 spec:
   replicas: 2
   selector:
+    # selector labels for pods, meaning pods are attached to replica set like svc in replica set using these selectors
     matchLabels:
       component: catalogue
   template:
+    # pod labels
     metadata:
       labels:
         component: catalogue
