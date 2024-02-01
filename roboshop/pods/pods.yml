@@ -63,7 +63,7 @@ spec:
 #          value: "mongodb://admin1:RoboShop123@prod-docdb-cluster.cluster-cpy5ddqj3otr.us-east-1.docdb.amazonaws.com:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 ---
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   # Replica set labels
   name: catalogue
